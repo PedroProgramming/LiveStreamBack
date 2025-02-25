@@ -77,10 +77,11 @@ def login(request: HttpRequest, user_login: LoginSchema) -> Tuple[int, dict]:
     user = CustomBackend().authenticate(
         request, user_login.email, user_login.password
     )
-
     if user is not None:
         refresh = RefreshToken.for_user(user)
         access = refresh.access_token
+        print(refresh)
+        print(access)
         return 200, {
             'message': 'Login successfull',
             'access_token': str(access),

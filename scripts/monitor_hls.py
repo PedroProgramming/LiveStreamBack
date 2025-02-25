@@ -5,12 +5,11 @@ import requests
 
 def monitor_hls_directory(stream_key):
     BACKEND_URL = f"http://127.0.0.1:8000/api/v1/live/upload_segment/{stream_key}"
-    HLS_PATH = f"/tmp/hls/{stream_key}"
+    HLS_PATH = f"/tmp/hls/"
 
     processed_files = set()
     while True:
         for root, _, files in os.walk(HLS_PATH):
-
             for file in files:
                 if file.endswith(".ts") and file not in processed_files:
                     file_path = os.path.join(root, file)

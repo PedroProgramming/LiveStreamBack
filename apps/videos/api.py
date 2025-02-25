@@ -1,7 +1,8 @@
+import json
 from typing import Tuple
 from users.models import User
 from core.auth import JWTAuth
-from ninja import File, Router
+from ninja import File, Router, Form
 from channel.models import Channel
 from django.http import HttpRequest
 from ninja.files import UploadedFile
@@ -14,18 +15,19 @@ video_router = Router(
     auth=JWTAuth()
 )
 
+#TODO ERRO AO INSERIR VÍDEO
 @video_router.post("/upload", response={201: dict, 400: dict, 404: dict, 500: dict})
 def upload_video(request: HttpRequest, video_data: CreateVideoSchema, video_file: UploadedFile = File(...)) -> Tuple[int, dict]:
+    print(video_file)
     try:
         user = User.objects.get(id=request.user)
     except user.DoesNotExist:
         return 404, {"error": "User not does exist"}
-
     try:
         channel = Channel.objects.get(user=user)
     except user.DoesNotExist:
         return 404, {"error": "Channel not does exist"}
-    
+
     try:
         video = Video(
             channel=channel,
@@ -39,6 +41,7 @@ def upload_video(request: HttpRequest, video_data: CreateVideoSchema, video_file
 
         return 201, {"success": "Video created successfully"}
     except (ValueError, NameError) as e:
+        print(str(e))
         return 400, {"error": f"{str(e)}"}
     
     except Exception as e:
