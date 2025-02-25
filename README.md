@@ -3,15 +3,15 @@
 
 
 ## Clone este repositório
-sh```git clone https://github.com/PedroProgramming/LiveStreamingBackend.git```
+```git clone https://github.com/PedroProgramming/LiveStreamingBackend.git```
 ## Entrar no diretório
-sh```cd LiveStreamingBackend```
+```cd LiveStreamingBackend```
 ## Crie um ambiente virtual
-sh```python3 -m venv venv```
+```python3 -m venv venv```
 ## Ative o ambiente virtual
-sh```source venv/bin/activate```
+```source venv/bin/activate```
 ## Instale as dependências
-sh```pip install -r requirements.txt```
+```pip install -r requirements.txt```
 
 
 # Criar .env na raiz do projeto
@@ -52,10 +52,10 @@ REDIS_CELERY_URL=REDIS://127.0.0.1:6379/1
 # Rodando o Projeto
 
 ## Fazer migrações
-sh```python manage.py migrate```
+```python manage.py migrate```
 
 ## Criar superusuário
-sh```python manage.py createsuperuser```
+```python manage.py createsuperuser```
 
 ## Iniciar servidor
-sh```python manage.py runserver```
+```python manage.py runserver```
